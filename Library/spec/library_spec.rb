@@ -40,52 +40,80 @@ class TestLibrary < MiniTest::Test
 
      @books = [@book1, @book2, @book3, @book4]
 
+     @library = Library.new(@books)
 end
 
 
+  # def test_book_name
+  #   book = book_name(@book1)
+  #   assert_equal("The_Wheel_of_Time", book)
+  # end
 
-  def test_book_name
-    book = book_name(@book1)
-    assert_equal("The_Wheel_of_Time", book)
+  def test_get_book_name
+    assert_equal(@books, @library.get_book_name())
   end
 
 
- def test_book_info
-   book_details = @book2
-   book = book_info(book_details[:title], @books)
-   assert_equal(book_details, book)
- end
+#  def test_book_info
+#    book_details = @book2
+#    book = book_info(book_details[:title], @books)
+#    assert_equal(book_details, book)
+#  end
 
 
- def test_book_rental_info
-   book_details = @book2
-   book = book_rental_info(book_details[:title], @books)
-   assert_equal(book_details[:rental_details], book)
- end
+  def test_find_book
+    expected = @book1
+    actual = @library.find_book("The_Wheel_of_Time")
+    assert_equal(expected, actual)
+  end
+
+
+#  def test_book_rental_info
+#    book_details = @book2
+#    book = book_rental_info(book_details[:title], @books)
+#    assert_equal(book_details[:rental_details], book)
+#  end
+
+  def test_rental_info
+    expected = {
+     student_name: "Rex",
+     date: "22/12/16"
+    }
+    actual = @library.rental_info("lassy")
+    assert_equal(expected, actual)
+  end
 
 
 
+# def test_add_book_to_books
+#   result = add_book_to_books(@book4, "A_Conflict_of_visions")
+#   assert_equal("A_Conflict_of_visions", result)
+# end
 
 def test_add_book_to_books
-  result = add_book_to_books(@book4, "A_Conflict_of_visions")
-  assert_equal("A_Conflict_of_visions", result)
+  expected = {
+     title: "Dark Tower",
+     rental_details: {
+      student_name: "",
+      date: ""
+     }
+   }
+   @library.add_book_to_books("Dark Tower")
+   actual = @library.find_book("Dark Tower")
+   assert_equal(expected, actual)
 end
 
+# def test_add_rental_info_to_book
+#   result = add_rental_info_to_book(@book4, "Mike", "04/01/17")
+#   assert_equal({student_name: "Mike", date: "04/01/17"}, result)
+# end
 
-
-def test_add_rental_info_to_book
-  result = add_rental_info_to_book(@book4, "Mike", "04/01/17")
-  assert_equal({student_name: "Mike", date: "04/01/17"}, result)
-end
-
-
+  def test_rent_book
+    @library.rent_book("Dune" ,"John", "22/12/17")
+    book = @library.find_book("Dune")
+    assert_equal("John", book[:rental_details][:student_name])
+    assert_equal("22/12/17", book[:rental_details][:date])
   end
 
 
-
-  # Create a method that takes in a book title and adds it to our
-  # book list (add a new hash for the book with the student name
-  # and date being left as empty strings)
-
-  # Create a method that changes the rental details of a book by
-  # taking in the title of the book, the student renting it and the date it's due to be returned.
+  end

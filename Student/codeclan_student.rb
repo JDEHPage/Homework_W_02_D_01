@@ -26,6 +26,12 @@ class Student
     return speech
   end
 
+  # or
+
+  # def student_can_talk
+  #   return speech
+  # end
+
 
   def student_favourite_programming_language(language)
     return "I love #{language}"

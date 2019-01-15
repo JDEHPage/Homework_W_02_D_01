@@ -1,42 +1,83 @@
 require('pry')
 
-def book_name(book)
-  return book[:title]
+class Library
+
+
+def initialize(books)
+  @books = books
 end
 
 
 
-def book_info(book_name, books)
-  for book in books
-    if (book[:title] == book_name)
+
+# def book_name(book)
+#   return book[:title]
+# end
+
+def get_book_name()
+  return @books
+end
+
+# def book_info(book_name, books)
+#   for book in books
+#     if (book[:title] == book_name)
+#       return book
+#     end
+#   end
+# end
+
+def find_book(book_title)
+  for book in @books
+    if book[:title] == book_title
       return book
     end
   end
 end
 
 
-  def book_rental_info(book_name, books)
-    for book in books
-      if (book[:title] == book_name)
-        return book[:rental_details]
-      end
-    end
+
+  # def book_rental_info(book_name, books)
+  #   for book in books
+  #     if (book[:title] == book_name)
+  #       return book[:rental_details]
+  #     end
+  #   end
+  # end
+
+  def rental_info(book_title)
+    book = find_book(book_title)
+    return book[:rental_details]
   end
 
 
-  def add_book_to_books(book, new_title)
-    return book[:title] << new_title
+  # def add_book_to_books(book, new_title)
+  #   return book[:title] << new_title
+  # end
+
+  def add_book_to_books(book_title)
+    book = {
+       title: book_title,
+       rental_details: {
+        student_name: "",
+        date: ""
+       }
+     }
+     @books << book
+  end
+
+  # def add_rental_info_to_book (book, renter, date)
+  #   book[:rental_details][:student_name] << renter
+  #   book[:rental_details][:date] << date
+  #   return book [:rental_details]
+  # end
+
+  def rent_book(book_title, student_name, due_date)
+    book = find_book(book_title)
+    book[:rental_details] = { student_name: student_name, date: due_date}
   end
 
 
-  def add_rental_info_to_book (book, renter, date)
-    book[:rental_details][:student_name] << renter
-    book[:rental_details][:date] << date
-    return book [:rental_details]
-  end
-
-
-
+end
 
 
 

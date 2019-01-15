@@ -2,6 +2,15 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../sports_team.rb')
 
+# def setup()
+#   @players = ["kim", "mik", "some"]
+#   @team = Team.new("G11 Gophers", players, "John steven")
+# end
+
+# def setup allows us to call upon instnance vriables at any time.
+
+
+
 class TestSportsTeam < MiniTest::Test
 
   def test_team_name
@@ -30,7 +39,7 @@ class TestSportsTeam < MiniTest::Test
 def test_add_players
   team = SportsTeam.new("Something United", ["Steve", "Brain"], "Mr.Very Angry", 0)
   result = team.add_players("Angus")
-  assert_equal(["Steve", "Brain", "Angus"], result)
+  assert_equal(3, result.length)
 end
 
 

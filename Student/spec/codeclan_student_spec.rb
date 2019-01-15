@@ -34,6 +34,16 @@ class TestStudnet < MiniTest::Test
     assert_equal("I can talk!", result)
   end
 
+# or
+
+# def test_student_can_talk
+#   student = Student.new("Sam", "G10")
+#   result = student.student_can_talk()
+#   assert_equal("I can talk!", result)
+# end
+
+
+
 
   def test_student_favourite_programming_language
     student = Student.new("Ian", "G19")
@@ -41,6 +51,6 @@ class TestStudnet < MiniTest::Test
     result = student.student_favourite_programming_language("#{language}")
     assert_equal("I love #{language}", result)
   end
-  
+
 
 end

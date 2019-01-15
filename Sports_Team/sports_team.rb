@@ -8,7 +8,7 @@ def initialize(team_name, players, coach_name, points)
   @team_name = team_name
   @players = players
   @coach_name = coach_name
-  @points = points = 0
+  @points = 0
 end
 
 # def team_name
@@ -43,13 +43,9 @@ def check_players_name(player_name)
 end
 
 
-
-
 def wins(win_or_loose)
   if win_or_loose == "win"
-    return @points += 1
-  else
-    return @points
+    @points += 1
   end
 end
 
